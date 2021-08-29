@@ -1,0 +1,169 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejemploCode
+{
+    class Program {
+
+        public static void Main(string[] args)
+        {
+            //Declarando las variables
+            int tamano, indice;
+            byte opcion, buscaEdad;
+            bool encontrado;
+            string buscaNombre, buscaDir, buscaTel;
+
+            //Ingreso de numero de Personas
+            Console.Write("Cuantas personas vas a ingresar: ");
+            tamano = Convert.ToInt32(Console.ReadLine());
+            //Declaracion de arrays
+            string[] nombres = new string[tamano];
+            string[] direccion = new string[tamano];
+            byte[] edades = new byte[tamano];
+            string[] telefonos = new string[tamano];
+
+            for (indice = 0; indice < nombres.Length; indice++)
+            {
+                Console.Write("Ingresa el Nombre de la Persona # " + (indice + 1) + " :");
+                nombres[indice] = Console.ReadLine().ToUpper();
+                Console.Write("Ingresa la direccion de la Persona # " + (indice + 1) + " :");
+                direccion[indice] = Console.ReadLine().ToUpper();
+                Console.Write("Ingresa la edad de la Persona # " + (indice + 1) + " :");
+                edades[indice] = Convert.ToByte(Console.ReadLine());
+                Console.Write("Ingresa el telefono de la Persona # " + (indice + 1) + " :");
+                telefonos[indice] = Console.ReadLine().ToUpper();
+            }
+
+            do
+
+            {
+                //Creando el menu
+                Console.WriteLine("Menú de opciones : D ");
+                Console.WriteLine("1. Mostrar todos los datos");
+                Console.WriteLine("2. Busqueda por nombre");
+                Console.WriteLine("3. Busqueda por direccion");
+                Console.WriteLine("4. Busqueda por edad");
+                Console.WriteLine("5. Buesqueda por telefono");
+                Console.WriteLine("6. Salir");
+                Console.WriteLine("Elige una opcion");
+                opcion = Convert.ToByte(Console.ReadLine());
+                switch (opcion)
+                {
+                    case 1: ///Mostrar todo los datos
+                        for (indice = 0; indice < nombres.Length; indice++)
+                            Console.WriteLine("*********************");
+                            Console.WriteLine("Nombre: " + nombres[indice]);
+                            Console.WriteLine("Direccion: " + direccion[indice]);
+                            Console.WriteLine("Edad: " + edades[indice]);
+                            Console.WriteLine("Telefono: " + telefonos[indice]);
+                            Console.WriteLine("*********************");
+                        break;
+                    case 2://Busqueda de nombre
+                        encontrado = false;
+                        Console.WriteLine("¿Qué nombre vas a buscar? ");
+                        buscaNombre = Console.ReadLine().ToUpper();
+                        for(indice=0; indice < nombres.Length; indice++)
+                        {
+                            if (nombres[indice].Equals(buscaNombre))
+                            {
+                                Console.WriteLine("*********************");
+                                Console.WriteLine("Nombre: " + nombres[indice]);
+                                Console.WriteLine("Direccion: " + direccion[indice]);
+                                Console.WriteLine("Edad: " + edades[indice]);
+                                Console.WriteLine("Telefono: " + telefonos[indice]);
+                                Console.WriteLine("*********************");
+                                encontrado = true;
+                            }
+                        }
+                        if(encontrado == false)
+                        {
+                            Console.WriteLine("No hay registros con el nombre: " + buscaNombre);
+                        }
+                        break;
+                    case 3:
+                        encontrado = false;
+                        Console.WriteLine("¿Qué direccion vas a buscar? ");
+                        buscaDir = Console.ReadLine().ToUpper();
+                        for (indice = 0; indice < direccion.Length; indice++)// Si dejas indice<nombres.Length sera indiferente porque la cantidad es la misma
+                        {
+                            if (direccion[indice].Equals(buscaDir))
+                            {
+                                Console.WriteLine("*********************");
+                                Console.WriteLine("Nombre: " + nombres[indice]);
+                                Console.WriteLine("Direccion: " + direccion[indice]);
+                                Console.WriteLine("Edad: " + edades[indice]);
+                                Console.WriteLine("Telefono: " + telefonos[indice]);
+                                Console.WriteLine("*********************");
+                                encontrado = true;
+                            }
+                        }
+                        if (encontrado == false)
+                        {
+                            Console.WriteLine("No hay registros con la direccion: " + buscaDir);
+                        }
+                        break;
+                    case 4://Busqueda de edad
+                        encontrado = false;
+                        Console.WriteLine("¿Qué edad vas a buscar? ");
+                        buscaEdad = Convert.ToByte(Console.ReadLine());
+                        for (indice = 0; indice < edades.Length; indice++)
+                        {
+                            if (edades[indice]==buscaEdad)
+                            {
+                                Console.WriteLine("*********************");
+                                Console.WriteLine("Nombre: " + nombres[indice]);
+                                Console.WriteLine("Direccion: " + direccion[indice]);
+                                Console.WriteLine("Edad: " + edades[indice]);
+                                Console.WriteLine("Telefono: " + telefonos[indice]);
+                                Console.WriteLine("*********************");
+                                encontrado = true;
+                            }
+                        }
+                        if (encontrado == false)
+                        {
+                            Console.WriteLine("No hay registros con esa edad: " + buscaEdad);
+                        }
+                        break;
+                    case 5:
+                        encontrado = false;
+                        Console.WriteLine("¿Qué telefono vas a buscar? ");
+                        buscaTel = Console.ReadLine().ToUpper();
+                        for (indice = 0; indice < telefonos.Length; indice++)
+                        {
+                            if (telefonos[indice].Equals(buscaTel))
+                            {
+                                Console.WriteLine("*********************");
+                                Console.WriteLine("Nombre: " + nombres[indice]);
+                                Console.WriteLine("Direccion: " + direccion[indice]);
+                                Console.WriteLine("Edad: " + edades[indice]);
+                                Console.WriteLine("Telefono: " + telefonos[indice]);
+                                Console.WriteLine("*********************");
+                                encontrado = true;
+                            }
+                        }
+                        if (encontrado == false)
+                        {
+                            Console.WriteLine("No hay registros con ese telefono: " + buscaTel);
+                        }
+                        break;
+                    case 6:
+                        Console.WriteLine("******El programa ha finalizado*********");
+                        break;
+                    default:
+                        Console.WriteLine("ERROR: Accion incorrecta");
+                        break;
+                }
+
+            } while (opcion != 6);
+            Console.ReadKey(true);
+        }
+    }
+
+}
+
+
+
+
