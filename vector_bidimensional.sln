@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejemploCode
+{
+    class Program {
+
+        public static void Main(string[] args)
+        {
+             /*Recuerda que para correr un ARRAY necesitas
+             *usar la estructura FOR .
+             */
+             
+            //Inicilainzado una matriz
+            //tipo_dato[,] nombre_matriz = new tipo_dato[tamFila,tamCol];
+            string[,] nombres = { { "plomis","oso","nandito"},{ "jessica","miguel","nachas"},{ "holi","hola","hi"} };
+            byte indiceFila, indiceColum;
+            int[,] numeritos = { { 22, 33 }, { 88, 66 } };
+
+            //Mostrando la matriz de tipo string
+            Console.WriteLine("Mostrando la matriz de tipo string");
+
+            for (indiceFila=0; indiceFila<3; indiceFila++)
+            {
+                for (indiceColum = 0; indiceColum < 3; indiceColum++)
+                {
+                    Console.WriteLine("[ " + nombres[indiceFila, indiceColum]+" ]");
+                }
+                Console.WriteLine();
+            }
+
+            //Mostrando la matriz de tipo Int
+
+            //MIRA indice < 2 debido a que si fila tiene 2 numeros, ahi ya no importa el indice
+            for (indiceFila = 0; indiceFila < 2; indiceFila++)
+            {
+                for (indiceColum = 0; indiceColum < 2; indiceColum++)
+                {
+                    Console.WriteLine("[ " + numeritos[indiceFila, indiceColum] + " ]");
+                }
+                Console.WriteLine();
+            }
+            Console.ReadKey(true);
+        }
+    }
+
+}
+
