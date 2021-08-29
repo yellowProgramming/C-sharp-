@@ -1,0 +1,115 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejemploCode
+{
+    class Program {
+
+        public static void Main(string[] args)
+        {
+            //Declaracion de variables
+            int indiceFila, indiceCol, tamFilas, tamCol, filaUsuario, colUsuario, opcion,contador,reemplazo;
+            int elemento;
+            bool encontrado;
+
+            Console.Write("Cuántas filas tendra la matriz?: ");
+            tamFilas = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Cuántas columnas tendra la matriz?: ");
+            tamCol = Convert.ToInt32(Console.ReadLine());
+
+            //Declarando la matriz
+            int[,] matrizUsuario = new int[tamFilas, tamCol];
+            for (indiceFila = 0; indiceFila < tamFilas; indiceFila++)
+            {
+                for (indiceCol = 0; indiceCol < tamCol; indiceCol++)
+                {
+                    Console.Write("Ingrese el dato del indice [" + indiceFila + " , " + indiceCol + "]: ");
+                    matrizUsuario[indiceFila, indiceCol] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+            do
+               {
+                    Console.WriteLine("1. Modificar un elmento por sus indices");
+                    Console.WriteLine("2. Modificar un elemento por sus coincidencias");
+                    Console.WriteLine("3. Mostrar los datos  de la matriz");
+                    Console.WriteLine("4. Salir"); 
+                    Console.Write("Elige una opcion: ");
+                    opcion = Convert.ToInt32(Console.ReadLine());
+                     switch (opcion)
+                     {
+                     //Modificar un elemnto por sus indices
+                         case 1:
+                           Console.Write("Ingresa el indice de la fila: ");
+                           filaUsuario = Convert.ToInt32(Console.ReadLine());
+                           Console.Write("Ingresa el indice de la columna: ");
+                           colUsuario = Convert.ToInt32(Console.ReadLine());
+                            if (filaUsuario < tamFilas && colUsuario < tamCol)
+                            {
+                            Console.Write("Ingresa el Nuevo Elemnto Indice [" + filaUsuario + " , " + colUsuario + "]: ");
+                            matrizUsuario[filaUsuario, colUsuario] = Convert.ToInt32(Console.ReadLine());
+                            }
+                            else
+                            {
+                              Console.WriteLine("El indice [" + filaUsuario + " , " + colUsuario + "] No existe");
+                            }
+                            break;
+                         case 2:
+                               //Modificar un elemento por sus coincidencias
+                                  contador = 0;
+                                  encontrado = false;
+                                  Console.Write("Ingresa el elemento  a reemplazar: ");
+                                  elemento = Convert.ToInt32(Console.ReadLine());
+                                  Console.Write("Ingresa su reemplazo: ");
+                                  reemplazo = Convert.ToInt32(Console.ReadLine());
+
+                                 for (indiceFila = 0; indiceFila < tamFilas; indiceFila++)
+                                {
+                                    for (indiceCol = 0; indiceCol < tamCol; indiceCol++)
+                                    {
+                                        if (matrizUsuario[indiceFila, indiceCol] == elemento)
+                                        {
+                                            encontrado = true;
+                                            contador++;
+                                            matrizUsuario[indiceFila, indiceCol] = reemplazo;
+                                        }
+                                    }
+                                 }
+                                if (encontrado == true)
+                                {
+                                    Console.WriteLine("Se encontraron " + contador + " Coincidencias con " + elemento + " y fueron reemplazados por " + reemplazo);
+                                }else{
+                                Console.WriteLine("No se encontraron coincidencias con " + elemento);
+                                }
+                                break;
+                        case 3:
+                        //Mostrar los datos de la columna
+                        for (indiceFila = 0; indiceFila < tamFilas; indiceFila++)
+                        {
+                            for (indiceCol = 0; indiceCol < tamCol; indiceCol++)
+                            {
+                                Console.Write("[" + matrizUsuario[indiceFila, indiceCol] + "]");
+                                //matrizUsuario[indiceFila, indiceCol] = Convert.ToInt32(Console.ReadKey());
+                            }
+                            Console.WriteLine();
+                        }
+                        break;
+                    case 4:
+                        Console.WriteLine("***Finalizo el programa****");
+                        break;
+                    default:
+                        Console.WriteLine("ERROR: Dato Invalido");
+                        break;
+                    }
+                } while (opcion!=4);
+            Console.ReadKey(true);
+        }
+    }
+
+}
+
+
+
