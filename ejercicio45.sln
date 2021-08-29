@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejemploCode
+{
+    class Program {
+
+        public static void Main(string[] args)
+        {
+            int[,] matrizNumero = new int[2, 3];
+            byte indiceFila, indiceColum;
+
+            for (indiceFila = 0; indiceFila < 2; indiceFila++)
+            {
+                for (indiceColum = 0; indiceColum < 3; indiceColum++)
+                {
+                    //Solicitando los datos de la Matriz
+                    Console.Write("Ingresa el dato del indice [" + indiceFila + " , " + indiceColum + " ] ");
+                    matrizNumero[indiceFila, indiceColum] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+
+            //Ingresar datos 
+            Console.WriteLine("Los datos que ingresaste son: ");
+            for (indiceFila = 0; indiceFila < 2; indiceFila++)
+            {
+                for (indiceColum = 0; indiceColum < 3; indiceColum++){
+                    //Muestra los datos en pantalla que han sido asignados
+                    Console.Write("[ " + matrizNumero[indiceFila, indiceColum] + " ] ");
+                 }
+                Console.WriteLine();
+            }
+                    Console.ReadKey(true);
+        }
+    }
+
+}
