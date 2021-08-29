@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejemploCode
+{
+    class Program {
+
+        public static void Main(string[] args)
+        {
+            //Declarando variables
+
+            int tamano,indice, indiceUsuario;
+            string respuesta, nuevoNombre;
+            double nuevoSueldo;
+
+            //Solicitando el tamaño de vector
+            Console.Write("De que tamaño deseas tu vector: ");
+            tamano = Convert.ToInt32(Console.ReadLine());
+            //Declaramos un vector
+            string[] nombres = new string[tamano];
+            double[] sueldos = new double[tamano];
+            //Solicitando datos
+            for(indice=0; indice<nombres.Length;indice++)
+            {
+                Console.Write("Ingresa el nombre del empleado # "+indice+1+" :");
+                nombres[indice] = Console.ReadLine();
+
+                Console.Write("Ingresa el sueldo del empleado # " + indice + 1 + " :");
+                sueldos[indice] = Convert.ToDouble(Console.ReadLine());
+            }
+            //Mostrando los datos del vector
+            do
+            {
+                for (indice = 0; indice < nombres.Length; indice++)
+                {
+                    Console.WriteLine("*************************************************");
+                    Console.WriteLine("Nombres: " + nombres[indice]);
+                    Console.WriteLine("Sueldos: " + sueldos[indice]);
+                    Console.WriteLine("*************************************************");
+                }
+
+                //Modificar los elementos del Array
+                Console.WriteLine("Deseas modificar algun elemento: ");
+                respuesta = Console.ReadLine();
+                respuesta = respuesta.ToUpper();
+                if(respuesta.Equals("SI"))
+                {//Añade condicional para cambio
+                    Console.WriteLine("Ingresa el indice del elemento que deseas modificar: ");
+                    indiceUsuario = Convert.ToInt32(Console.ReadLine());
+                    if (indiceUsuario >= 0 && indiceUsuario < nombres.Length)
+                    {
+                        //Solicitando nuevos datos
+                        Console.WriteLine("Ingresa el nuevo nombre de " + nombres[indiceUsuario] + ": ");
+                        nuevoNombre = Console.ReadLine();
+                        //Haciendo la modificacion al Nombre
+                        nombres[indiceUsuario] = nuevoNombre;
+                        Console.WriteLine("Ingresa el nuevo Sueldo  " + nombres[indiceUsuario] + ": ");
+                        nuevoSueldo = Convert.ToDouble(Console.ReadLine());
+                        //Haciendo la modificacion al Sueldo
+                        sueldos[indiceUsuario] = nuevoSueldo;
+                    }
+                    else
+                    {
+                        Console.WriteLine("El indice " + indiceUsuario + " No existe en el vector");
+                    }
+                }
+             } while (respuesta.Equals("SI"));
+            Console.ReadKey(true);
+        }
+        
+    }
+
+}
+
+
