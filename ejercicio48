@@ -1,0 +1,159 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejemploCode
+{
+    class Program {
+
+        public static void Main(string[] args)
+        {
+            /*
+               a) Partidos ganados (PG)
+               b) Partidos empatados(PE)
+               c) Partidos Perdidos (PP)
+               d) Partidos Jugados (PJ)
+               e) Diferencia de goles (DG)
+             */
+            //Declarar variables
+            int equipos, indiceFila;
+            int mayorPuntaje, mayorGanados, mayorGoles, cuentaGanadores;
+            //Solicita número de equipos
+            Console.Write("Cuantos equipos hay en el torneo?: ");
+            equipos = Convert.ToInt32(Console.ReadLine());
+            int[,] matrizEquipos = new int[equipos, 6];
+            //Solicitando los datos de los equipos 
+            for (indiceFila = 0; indiceFila < equipos; indiceFila++)
+            {
+                Console.Write("Ingresa los juegos ganados del equipo #" + (indiceFila + 1)+ ": ");
+                matrizEquipos[indiceFila, 0] = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Ingresa los juegos empatados del equipo #" + (indiceFila + 1) + ": ");
+                matrizEquipos[indiceFila, 1] = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Ingresa los juegos perdidos del equipo #" + (indiceFila + 1) + ": ");
+                matrizEquipos[indiceFila, 2] = Convert.ToInt32(Console.ReadLine());
+                //Calculando los Partidos Jugados
+                matrizEquipos[indiceFila, 3] = matrizEquipos[indiceFila, 0] + matrizEquipos[indiceFila, 1] + matrizEquipos[indiceFila, 2];
+                Console.Write("Ingresa los Goles de diferencia del Equipo #" + (indiceFila + 1) + ": ");
+                matrizEquipos[indiceFila, 4] = Convert.ToInt32(Console.ReadLine());
+                //Calculando los puntos
+                matrizEquipos[indiceFila, 5] = (matrizEquipos[indiceFila, 0] * 3) + (matrizEquipos[indiceFila, 1] * 1);
+            }
+            //Mostrando los Datos de los Equipos 
+            Console.WriteLine("Tabla de puntuaciones");
+            Console.WriteLine("PG\tPE\tPP\tPJ\tDG\tPuntos");
+            for(indiceFila=0;indiceFila<equipos; indiceFila++)
+            {
+                Console.WriteLine(matrizEquipos[indiceFila, 0] + "\t" + matrizEquipos[indiceFila, 1] + "\t" + matrizEquipos[indiceFila, 2] + "\t" + matrizEquipos[indiceFila, 3] + "\t" + matrizEquipos[indiceFila, 4] + "\t" + matrizEquipos[indiceFila, 5]);
+            }
+            //Encontramos el Mayor Puntaje
+            mayorPuntaje = matrizEquipos[0, 5];
+            cuentaGanadores = 0;
+            //Es uno porque se asume que el mayorPuntaje tiene la mayor matriz segund indice fila,columna
+            for (indiceFila=1; indiceFila<equipos; indiceFila++)
+            {
+                if (matrizEquipos[indiceFila,5]>mayorPuntaje) {
+                    mayorPuntaje = matrizEquipos[indiceFila, 5];
+                }
+            }
+            //Ahora buscamos cuantos ganadores hay y lo almacenamos en cuentaGnadores 
+            for (indiceFila = 0; indiceFila < equipos; indiceFila++)
+            {
+                if(matrizEquipos[indiceFila,5] == mayorPuntaje)
+                {
+                    cuentaGanadores++;   
+                }
+            }
+               // Console.WriteLine("Hay " + cuentaGanadores + " Ganadores");
+            //Si hay un solo ganador lo encontramos
+            if (cuentaGanadores == 1)
+            {
+                for (indiceFila = 0; indiceFila < equipos; indiceFila++)
+                {
+                    if (matrizEquipos[indiceFila, 5] == mayorPuntaje)
+                    {
+                        Console.WriteLine("El Equipo Ganador es el #" + (indiceFila + 1) + " con " + matrizEquipos[indiceFila, 5] + " Puntos.");
+                        break;
+                    }
+                }
+            }
+            else
+            { 
+                //Buscamos el ganador por juegos ganados 
+                mayorGanados = matrizEquipos[0, 0];
+                cuentaGanadores = 0;
+
+                for (indiceFila = 1; indiceFila < equipos; indiceFila++)
+                {
+                    //indice 0 porque esa es la columna donde tenemos los partidos ganados
+                    if (matrizEquipos[indiceFila, 0] > mayorGanados)
+                    {
+                        mayorGanados = matrizEquipos[indiceFila, 0];
+                    }
+                }
+                //Ahora buscamos cuantos ganadores hay por partidos ganados
+                for (indiceFila = 0; indiceFila < equipos; indiceFila++)
+                {
+                    if(matrizEquipos[indiceFila,0] == mayorGanados)
+                    {
+                        cuentaGanadores++;
+                    }
+                }
+                //Console.WriteLine("Hay " + cuentaGanadores + " Equipos ganadores con " + mayorGanados + " Partidos Ganados.");
+                //Si hay un solo ganador por partidos ganados lo encontramos 
+                if (cuentaGanadores == 1)
+                {
+                    for (indiceFila = 0; indiceFila < equipos; indiceFila++)
+                    {
+                        if (matrizEquipos[indiceFila, 0] == mayorGanados)
+                        {
+                            Console.WriteLine("El Equipo Ganador por Mayor número de Juegos Ganados es el #" + (indiceFila + 1) + " Con " + matrizEquipos[indiceFila, 0] + " Juegos Ganados.");
+                            break;
+                        }
+                    }
+                }
+                else
+                { //Buscamos el ganador por Diferencia de Goles 
+                    mayorGoles = matrizEquipos[0, 4];
+                    cuentaGanadores = 0;
+                    for (indiceFila = 1; indiceFila < equipos; indiceFila++)
+                    {
+                        if (matrizEquipos[indiceFila, 4] > mayorGoles)
+                        {
+                            mayorGoles = matrizEquipos[indiceFila, 4];
+                        }
+                    }
+                    //Ahora buscamos cuantos ganadores por diferencia de goles hay 
+                    for (indiceFila = 0; indiceFila < equipos; indiceFila++)
+                    {
+                        if (matrizEquipos[indiceFila, 4] == mayorGoles)
+                        {
+                            cuentaGanadores++;
+                        }
+                    }
+                    //Console.WriteLine("Hay " + cuentaGanadores + " Equipos ganadores con " + mayorGoles + " Diferencia de Goles.");
+                    //Si hay un solo ganador por diferencia de goles lo encontramos
+                    if (cuentaGanadores == 1)
+                    {
+                        for (indiceFila = 0; indiceFila < equipos; indiceFila++)
+                        {
+                            if (matrizEquipos[indiceFila, 4] == mayorGoles)
+                            {
+                                Console.WriteLine("El Equipo Ganador por Mayor Diferencia de Goles es el #" + (indiceFila + 1) + " Con " + matrizEquipos[indiceFila, 4] + " Goles de Diferencia");
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //Declaramos el torneo sin Campeón
+                        Console.WriteLine("No hay campeón por  Criterios de desmpate");
+                    }
+                }
+            }
+                Console.ReadKey(true);
+        }
+    }
+
+}
