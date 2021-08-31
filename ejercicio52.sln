@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejemploCode
+{
+    class Program {
+
+        public static void Main(string[] args)
+        {
+            //calcularEdad(2015,1980);
+
+            solicitarDatos();
+            Console.ReadKey();
+        }
+
+        static void calcularEdad(int anioAct, int anioNac)
+        {
+            int edad;
+            edad = anioAct - anioNac;
+            Console.WriteLine("Tuedad es: " + edad);
+        }
+        static void solicitarDatos()
+        {
+            int aa, an;
+            Console.Write("Ingresa el año actual: ");
+            aa = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Ingresa tu año de nacimiento: ");
+            an = Convert.ToInt32(Console.ReadLine());
+            calcularEdad(aa,an);
+        }
+    }
+
+}
