@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejemploCode
+{
+    class Program {
+
+        public static void Main(string[] args)
+        {
+            //Llama al metodo GetMax, con parametros 
+            solicitarDatos();
+            Console.ReadKey();
+        }
+        //Comparacion de variables usando IF
+        static int calcularEdad(int anioAct, int anioNac)
+        {
+            int edad;
+            edad = anioAct - anioNac;
+            return edad;
+        }
+        static void solicitarDatos()
+        {
+            int aa, an;
+            Console.WriteLine("Ingresa el año actual: ");
+            aa = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Ingresa tu año de nacimiento: ");
+            an = Convert.ToInt32(Console.ReadLine());
+            //Agrega,os Console.WriteLIne para que se muestre en pantalla 
+            Console.WriteLine("Tu edad es: " + calcularEdad(aa, an));
+        }
+    }
+
+}
