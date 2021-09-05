@@ -1,0 +1,90 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejemploCode
+{
+    class Program {
+
+        public static void Main(string[] args)
+        {
+            //Mandando llamar al metodo leerVecotr
+            leerVector();
+
+            Console.ReadKey(true);
+        }
+        //Creando un método para leer el vector
+        static void leerVector()
+        {
+            int tama, numeroX;
+            Console.Write("De que tamaño deseas tu vector?: ");
+            tama = Convert.ToInt32(Console.ReadLine());
+            int[] vectorNumeros = new int[tama];
+            for(int indice = 0; indice < tama; indice++)
+            {
+                Console.Write("Ingresa el elemento del indice [" + indice + "]: ");
+                vectorNumeros[indice] = Convert.ToInt32(Console.ReadLine());
+            }
+            //Llamando al metodo encargado de mostrar vector
+            mostrarVector(vectorNumeros);
+            Console.Write("Ahora ingres aun numero: ");
+            numeroX = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("El numero " + numeroX + " Aparece " + numeroVeces(vectorNumeros, numeroX));
+            Console.WriteLine("Hay " +menores(vectorNumeros,numeroX)+" Numero Menores a "+numeroX);
+            Console.WriteLine("Hay " + mayores(vectorNumeros, numeroX) + " Numero Mayores a " + numeroX);
+        }
+        //Creando el metodo mostrarVector
+        static void mostrarVector(int[] vectorNumeros)
+        {
+            
+            Console.WriteLine("Los Datos del Vector son: ");
+            for(int indice=0; indice<vectorNumeros.Length; indice++)
+            {
+                Console.Write("[" + vectorNumeros[indice] + "]");
+            }
+            Console.WriteLine();
+        }
+        //Creando el metodo numeroVeces
+        static int numeroVeces(int[] vectorNumeros, int numerosX)
+        {
+            int cuentaVeces;
+            cuentaVeces = 0;
+            for(int indice = 0; indice < vectorNumeros.Length; indice++)
+            {
+                if (vectorNumeros[indice] == numerosX)
+                {
+                    cuentaVeces++;
+                }
+            }
+            return cuentaVeces;
+        }
+        //Creando el metodo para saber cuantos menos hay a X
+        static int menores(int[] vector,int x)
+        {
+            int cuentaMenores = 0;
+            for (int indice=0; indice<vector.Length;indice++)
+            {
+                if (vector[indice] < x)
+                {
+                    cuentaMenores++;
+                }
+            }
+            return cuentaMenores;
+        }
+        //Creando el metodo para saber cuantos mayores hay a X
+        static int mayores(int[] vector, int x)
+        {
+            int cuentaMayores = 0;
+            for (int indice = 0; indice < vector.Length; indice++)
+            {
+                if (vector[indice] > x)
+                {
+                    cuentaMayores++;
+                }
+            }
+            return cuentaMayores;
+        }
+    }
+}
