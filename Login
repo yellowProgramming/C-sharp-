@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+   
+        private void btn_Cerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btn_Ok_Click(object sender, EventArgs e)
+        {
+            string var_usuario = txtUsuario.Text;
+            string var_contrasena = txtCon.Text;
+
+            try
+            {
+
+                if (txtUsuario.Text == "Jessica")
+                {
+                    MessageBox.Show("Nombre Correcto");
+                    if (Convert.ToInt32(var_contrasena) < 99)
+                    {
+
+                        MessageBox.Show("Contrseña correcta, su numero es menor que 100");
+                    }
+                    else if (Convert.ToInt32(var_contrasena) > 101)
+                    {
+                        MessageBox.Show("Contraseña cncorrecto, es mayor que 100");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorrecto, intente de nuevo");
+                        txtUsuario.Clear();
+                        //Para borrar lo que contenga el textBox si muestra error
+                        txtCon.Clear();
+                    }
+
+                }
+              
+
+                }
+            catch (Exception x)
+            {
+            
+                MessageBox.Show("Error: " + x);
+            }
+        }
+    }
+}
