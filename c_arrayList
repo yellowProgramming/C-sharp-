@@ -1,0 +1,39 @@
+using System;
+using System.Collections;//agregar este para que ArrayList sea valido
+using System.Collections.Generic;//llamados o referencias a bibliotecas de codigo que ya tiene el sistema o visual s
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp2
+{
+    static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            //ArrayList
+            //En caso no sepamos que tipo de dato guardar usemos esto
+            // Util para introducir datos pero con cuidado puede dar error
+            //Ya casi no se usa y es sustituido por otro pero aun es 
+            //importante saber como funciona ArrayList
+            ArrayList lista = new ArrayList();
+            lista.Add(1203);
+            lista.Add("Hello World");
+            lista.Add(46546.6546);
+            lista.Add("TB");
+
+            foreach (var dato in lista)
+            {
+                MessageBox.Show(dato.ToString());
+            }
+
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Form1());
+        }
+    }
+}
