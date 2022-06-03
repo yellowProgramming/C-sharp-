@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp2
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+   
+        private void btn_Cerrar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btn_Ok_Click(object sender, EventArgs e)
+        {
+            string var_usuario = txtUsuario.Text;
+            string var_contrasena = txtCon.Text;
+
+            try
+            {
+
+                switch (var_usuario)
+                {
+                    case "Eduardo":
+                        MessageBox.Show("Escribiste Eduardo puedes pasar");
+
+                        switch (var_contrasena)
+                        {
+                            case "1234":
+                                MessageBox.Show("Correcto contraseña");
+                                break;
+                            default:
+                                MessageBox.Show("Incorrecto, poner contraseña adecuada");
+                                break;
+                        }
+
+                        break;
+                    case "David":
+                        MessageBox.Show("Escribiste David, puedes pasar");
+                        break;
+                    default:
+                        MessageBox.Show("Esa opcion no es valida");
+                        break;
+                }
+              
+                }
+            catch (Exception x)
+            {
+            
+                MessageBox.Show("Error: " + x);
+            }
+        }
+    }
+}
